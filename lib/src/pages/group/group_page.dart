@@ -7,6 +7,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class GroupPage extends StatefulWidget {
   final String name;
   final String userId;
+  final String groupId = '2222';
   const GroupPage({Key? key, required this.name, required this.userId})
       : super(key: key);
 
@@ -21,17 +22,22 @@ class _GroupPageState extends State<GroupPage> {
   @override
   void initState() {
     super.initState();
+    print('connected to frontenddddd');
+
     connect();
   }
 
   void connect() {
-    socket = IO.io("http://localhost:3000", <String, dynamic>{
+    socket = IO.io("http://localhost:3001", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
     socket!.connect();
     socket!.onConnect((_) {
       print('connected to frontend');
+
+      socket!.emit('join', '222211');
+
       socket!.on("sendMsgServer", (msg) {
         print(msg);
 
@@ -55,6 +61,7 @@ class _GroupPageState extends State<GroupPage> {
       "type": "ownMsg",
       "msg": msg,
       "senderName": senderName,
+      "groupId": '222222',
       "userId": widget.userId
     });
   }
