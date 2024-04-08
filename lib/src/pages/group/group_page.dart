@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/foundation/components/chat_welcome.dart';
+import 'package:flutter_application_1/src/foundation/components/date_display.dart';
+import 'package:flutter_application_1/src/foundation/components/new_join.dart';
 import 'package:flutter_application_1/src/foundation/msg_widget/other_msg_widget.dart';
 import 'package:flutter_application_1/src/foundation/msg_widget/own_msg_widget.dart';
 import 'package:flutter_application_1/src/pages/group/msg_model.dart';
@@ -28,7 +31,7 @@ class _GroupPageState extends State<GroupPage> {
   }
 
   void connect() {
-    socket = IO.io("http://localhost:3001", <String, dynamic>{
+    socket = IO.io("http://localhost:3000", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
@@ -78,12 +81,15 @@ class _GroupPageState extends State<GroupPage> {
         ),
         body: Column(
           children: [
+            NewJoin(),
+            Welcome_Group_Chat(),
+            Date_Display(),
             Expanded(
                 child: ListView.builder(
                     itemCount: listMsg.length,
                     itemBuilder: (context, index) {
                       if (listMsg[index].type == "ownMsg") {
-                        return OwnMsgWidget(
+                        return OtherMsgWidget(
                             msg: listMsg[index].msg,
                             sender: listMsg[index].sender);
                       } else {

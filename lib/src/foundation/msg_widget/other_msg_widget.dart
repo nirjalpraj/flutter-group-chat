@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_initicon/flutter_initicon.dart';
 
 class OtherMsgWidget extends StatelessWidget {
   final String sender;
   final String msg;
+
   const OtherMsgWidget({Key? key, required this.msg, required this.sender})
       : super(key: key);
 
@@ -14,32 +17,63 @@ class OtherMsgWidget extends StatelessWidget {
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width - 60,
         ),
-        child: Card(
-            color: Colors.grey,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              child: Text(
+                '$sender - 7:08 AM',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[500],
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            IntrinsicHeight(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(sender,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red)),
-                  SizedBox(
-                    height: 3,
+                  const Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Initicon(
+                      text: 'Anna Shrestha',
+                      size: 32,
+                      elevation: 4,
+                      backgroundColor: Colors.purple,
+                    ),
                   ),
-                  Text(msg,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black))
+                  const SizedBox(
+                      width:
+                          2), // Adjust the spacing between initicon and message
+                  Expanded(
+                    child: Card(
+                      color: Colors.grey[200],
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0),
+                          bottomRight: Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          msg,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )),
+            ),
+          ],
+        ),
       ),
     );
   }
