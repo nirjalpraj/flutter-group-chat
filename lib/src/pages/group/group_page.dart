@@ -99,7 +99,7 @@ class _GroupPageState extends State<GroupPage> {
                       itemCount: listMsg.length,
                       itemBuilder: (context, index) {
                         if (listMsg[index].type == "ownMsg") {
-                          return OtherMsgWidget(
+                          return OwnMsgWidget(
                               msg: listMsg[index].msg,
                               sender: listMsg[index].sender);
                         } else {
@@ -127,9 +127,9 @@ class _GroupPageState extends State<GroupPage> {
                           },
                           decoration: InputDecoration(
                               hintText: "Type a message",
-                              hintStyle:
-                                  TextStyle(fontWeight: FontWeight.normal),
-                              contentPadding: EdgeInsets.symmetric(
+                              hintStyle: const TextStyle(
+                                  fontWeight: FontWeight.normal),
+                              contentPadding: const EdgeInsets.symmetric(
                                   vertical: 12, horizontal: 10),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(

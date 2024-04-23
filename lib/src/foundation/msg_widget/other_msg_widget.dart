@@ -30,17 +30,6 @@ class _OtherMsgWidgetState extends State<OtherMsgWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 0),
-            //   child: Text(
-            //     widget.sender,
-            //     style: TextStyle(
-            //       fontSize: 12,
-            //       color: Colors.grey[500],
-            //     ),
-            //     overflow: TextOverflow.ellipsis,
-            //   ),
-            // ),
             IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
